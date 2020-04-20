@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<title>
+			items
+		</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="./jquery.js"></script>
+	</head>
+	<body>
+		<div class="screen1 left">
+			<p align="center">FILTERS</p>
+			<p class="filter_text">Price:<span id="demo"></span></p>
+			<div class="slidecontainer">
+  				<input type="range" min="100" max="10000" value="50" step="100" class="slider" id="myRange">
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Offer</button>
+				<div class="dropdown-content">
+				<a href="#">< 10%</a>
+				<a href="#">10% - 20%</a>
+				<a href="#">20% - 30%</a>
+				<a href="#">30% - 50%</a>
+				<a href="#">50% - 70%</a>
+				<a href="#">> 70%</a>
+				</div>
+			</div>
+		</div>
+		<div class="screen1 right">
+			{{#each data}}
+			<div class="flip-card">
+ 			 	<div class="flip-card-inner">
+    				<div class="flip-card-front">
+      					<img src={{this.imgpath}} alt="Avatar" class="img_card">
+						<h4><b>{{this.name}}</b></h4>
+					</div>
+    				<div class="flip-card-back">
+      					<h4><b>{{this.name}}</b></h4> 
+						<p>Category : {{this.category}}</p>
+						<p>Price : {{this.price}}</p>
+						<p>Offer : {{this.offer}}%</p>
+						<p>Description : {{this.description}}</p>
+						<button class="button_add">Add to Cart</button>
+					</div>
+				</div>
+  			</div>
+			{{/each}}
+		</div>
+		<script>
+			var slider = document.getElementById("myRange");
+			var output = document.getElementById("demo");
+			output.innerHTML = slider.value;
+			slider.oninput = function() {
+  				output.innerHTML = this.value;
+			}
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
