@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>
+			firstpage
+		</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="./jquery.js"></script>
+	</head>
+	<body>
+		<div class="category-section1">
+			<div class="categ-img">
+				<a href="/items?type=fashion"><img src="./images/watch.jpg" style="width:80%" height="90%">
+				<div class="center">Fashion</div></a>
+			</div>
+		</div>
+		<div class="category-section2">
+			<div class="categ-img">
+				<a href="/items?type=electronics"><img src="./images/belt.jpg" style="width:80%" height="90%">
+				<div class="center">Electronics</div></a>
+			</div>
+		</div>
+		<div class="category-section3">
+			<div class="categ-img">
+				<a href="/items?type=stationary"><img src="./images/specs.jpg" style="width:80%" height="90%">
+				<div class="center">Stationary</div></a>
+			</div>
+		</div>
+		<!-- <script type="text/javascript">
+			$(document).ready(function(){
+				var category="fashion";
+				const data={
+				category:category
+				}
+				var card = "";
+				$.ajax({
+					url: '/api/getProducts',
+					type: 'get',
+					dataType:"json",
+					contentType: "application/json",
+					data: data,
+					async:true,
+					success: function(response){
+						console.log(response);
+						return true;
+					},
+					error:function(e){
+						console.log(e);
+						return false
+					}
+				});
+			})
+	</script> -->
+	</body>
+</html>
