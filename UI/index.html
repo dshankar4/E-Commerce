@@ -1,0 +1,56 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<script src="jquery.js"></script>
+	<link rel="stylesheet" type="text/css" href="omnifood/vendors/css/grid.css">
+	<title>Sign in</title>
+</head>
+<body>
+	<header>
+		<div class="topbar">
+			<button id="sign1" align="center">Sign in</button>
+			<button id="sign2" align="center">Signup</button>
+		</div>
+		<div class="signin">
+			<form class="form1">
+				<input class="signin_details " type="text" align="center" placeholder="Roll no">
+				<input class="signin_details" type="password" align="center" placeholder="Password">
+				<a id="submit1" align="center">Sign in</a>
+				<p class="forgot" align="center"><a href="#">Forgot Password?</p>
+			</form>
+			<form class="form2">
+				<input class="signup_details" id="1" type="text" align="center" placeholder="Username">
+				<input class="signup_details" id="2" type="password" align="center" placeholder="Roll no">
+				<input class="signup_details" id="3" type="password" align="center" placeholder="Password">
+				<input class="signup_details" type="password" align="center" placeholder="Confirm Password">
+				<a id="submit2" align="center">Sign in</a>
+				<p class="forgot" align="center"><a href="#">Forgot Password?</p>
+			</form>
+		</div>
+	</header>
+	<script type="text/javascript">
+		$("#sign1").click(function(){
+			$(".form1").css("display","block");
+			$(".form2").css("display","none");
+		});
+		$("#sign2").click(function(){
+			$(".form1").css("display","none");
+			$(".form2").css("display","block");
+		});
+		document.getElementById("submit2").onclick=function(){
+			string1="";
+			string2="";
+			string3="";
+			string1=document.getElementById("1").value
+			string2=document.getElementById("2").value
+			string3=document.getElementById("3").value
+			alert(string1)
+			alert(string2)
+			alert(string3)
+		}
+	</script>
+</body>
+</html>
