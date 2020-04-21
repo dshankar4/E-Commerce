@@ -1,11 +1,9 @@
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-	<script src="jquery.js"></script>
-	<link rel="stylesheet" type="text/css" href="omnifood/vendors/css/grid.css">
+	<script src="./jquery.js"></script>
 	<title>Sign in</title>
 </head>
 <body>
@@ -15,19 +13,17 @@
 			<button id="sign2" align="center">Signup</button>
 		</div>
 		<div class="signin">
-			<form class="form1">
-				<input class="signin_details " type="text" align="center" placeholder="Roll no">
-				<input class="signin_details" type="password" align="center" placeholder="Password">
-				<a id="submit1" align="center">Sign in</a>
-				<p class="forgot" align="center"><a href="#">Forgot Password?</p>
+			<form class="form1" action="firstpage.html">
+				<input class="signin_details " type="text" name="rollno" align="center" placeholder="Roll no">
+				<input class="signin_details" type="password" name="password" align="center" placeholder="Password">
+				<input id="submit1" align="center" type="submit">
 			</form>
 			<form class="form2">
-				<input class="signup_details" id="1" type="text" align="center" placeholder="Username">
-				<input class="signup_details" id="2" type="password" align="center" placeholder="Roll no">
-				<input class="signup_details" id="3" type="password" align="center" placeholder="Password">
-				<input class="signup_details" type="password" align="center" placeholder="Confirm Password">
-				<a id="submit2" align="center">Sign in</a>
-				<p class="forgot" align="center"><a href="#">Forgot Password?</p>
+				<input class="signup_details" id="1" name="username" type="text" align="center" placeholder="Username">
+				<input class="signup_details" id="2" name="rollno" type="text" align="center" placeholder="Roll no">
+				<input class="signup_details" id="3" name="password" type="password" align="center" placeholder="Password">
+				<input class="signup_details"  name="confirm_password" type="password" align="center" placeholder="Confirm Password">
+				<input id="submit2" align="center" type="submit">
 			</form>
 		</div>
 	</header>
@@ -40,17 +36,55 @@
 			$(".form1").css("display","none");
 			$(".form2").css("display","block");
 		});
-		document.getElementById("submit2").onclick=function(){
-			string1="";
-			string2="";
-			string3="";
-			string1=document.getElementById("1").value
-			string2=document.getElementById("2").value
-			string3=document.getElementById("3").value
-			alert(string1)
-			alert(string2)
-			alert(string3)
-		}
+		$("#submit1").click(function(e){
+			e.preventDefault();
+			var rollno = document.getElementsByName("rollno")[0].value;
+			var pswd = document.getElementsByName("password")[0].value;
+			const data = {
+						rollno: rollno,
+						password: pswd
+					}
+			$.ajax({
+				url: "/auth_login",
+				type:"POST",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				success: function (res) {
+					console.log(res)
+					window.location.href = "./firstpage.html"
+				},
+				error: function(err) {
+					console.log(err)
+					return false
+				}
+		})
+		});
+		$("#submit2").click(function(e){
+			var rollno = document.getElementsByName("rollno")[1].value;
+			var pswd = document.getElementsByName("password")[1].value;
+			var username=document.getElementsByName("username")[0].value;
+			const data = {
+						rollno: rollno,
+						password: pswd,
+						username: username
+					}
+			$.ajax({
+			url:"/auth_signup",
+			type:"POST",
+			dataType: "json",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function (res) {
+				console.log(res)
+				window.location.href = "./firstpage.html"
+			},
+			error: function(err) {
+				console.log(err)
+				return false
+			}
+		})	
+	})
 	</script>
 </body>
 </html>

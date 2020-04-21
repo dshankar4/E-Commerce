@@ -23,32 +23,29 @@ app.use(
 	express.static(path.join(__dirname + '/UI'),{ index :false })
 	);
 app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/UI/firstpage.html'));
+	response.sendFile(path.join(__dirname + '/UI/index.html'));
 });
 app.post('/auth_login', function(request, response) {
-	var password = request.body.password;
-	var rollno   = request.body.rollno;
+	const { password,rollno } = request.body;
 	if (rollno && password) {
 		connection.query('SELECT * FROM accounts WHERE password = ? AND rollno = ?', [password, rollno], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.rollno = rollno;
 				console.log("loggedin successfully");
+				response.status(200).json({ message: "Login succesful"})
 			} else {
+				response.status(500).json({ message: "Incorrect Username and/or Password!"})
 				console.log('Incorrect Username and/or Password!');
 			}			
-			response.end();
 		});
 	} else {
 		console.log('Please enter Username, Password and Rollno!');
 		response.end();
 	}
-	response.sendFile(path.join(__dirname + '/UI/file_upload.html'));
 });
 app.post('/auth_signup', function(request, response) {
-	var username = request.body.username;
-	var password = request.body.password;
-	var rollno   = request.body.rollno;
+	const { username,password,rollno } = request.body;
 	if (username && password) {
 		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ? AND rollno = ?', [username, password, rollno], function(error, results, fields) {
 			if (results.length > 0) {
@@ -56,10 +53,12 @@ app.post('/auth_signup', function(request, response) {
 				request.session.username = username;
 				if (request.session.loggedin) {
 					console.log('Welcome back, ' + request.session.username + '!');
+					response.status(200).json({ message: "Login succesful"})
 				}
 			} else {
 				connection.query('insert into accounts (username,password,rollno) values(?,?,?)',[username,password,rollno],function(error,results){});		
 				console.log(username+"signed in successfully");
+				response.status(200).json({ message: "Singup succesful"})
 			}			
 			response.end();
 		});
@@ -67,26 +66,21 @@ app.post('/auth_signup', function(request, response) {
 		response.send('Please enter Username, Password and Rollno!');
 		response.end();
 	}
-	response.sendFile(path.join(__dirname + '/UI/file_upload.html'));
 });
-app.get('/api/getProducts1',function(req,res){
-	console.log(req.query.category);
-	const category=req.query.category; 
-	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=?',[category],function(error,results){
-		//connection.release();
-		if(error){
-			console.log(error);
-		}
-		else{
-			//console.log(results);
-			/* res.status(200).json({
-				message:"success",
-				data: results
-			 }); */
-			res.send('response sent');
+app.get("/filter_products",function(req,res){
+	const {min,max,category}=req.query;
+	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=? and price > ? and price < ? ',[category,min,max],(error,results) => {
+		if(error) {
+			console.log(error)
+		} else {
+			res.render('items', {
+				data: results,
+				message: "success"
+			})
 		}
 	});
-});
+
+})
 
 const getProductsByType = (type,callback) => {
 	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=?',[type],(error,results) => {
@@ -106,7 +100,6 @@ app.get('/items', (req, res) => {
 			res.send(error);
 		}
 		else{
-			console.log(result)
 			res.render('items', {
 				data: result,
 				message: "success"

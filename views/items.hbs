@@ -7,11 +7,21 @@
 		<script src="./jquery.js"></script>
 	</head>
 	<body>
+		<script>
+			function get_Filters(){
+				var min = document.getElementsByName("min")[0].value;
+				var max = document.getElementsByName("max")[0].value;
+				var category = location.search.split("=")
+				var category=category[category.length-1]
+				location.href="/filter_products?min="+min+"&max="+max+"&category="+category;
+			}
+		</script>
 		<div class="screen1 left">
 			<p align="center">FILTERS</p>
-			<p class="filter_text">Price:<span id="demo"></span></p>
-			<div class="slidecontainer">
-  				<input type="range" min="100" max="10000" value="50" step="100" class="slider" id="myRange">
+			<p class="filter_text">Price</p>
+			<div>
+				<input type="number" name="min" min="10" max="100000" value="100" placeholder="min" style="margin-left:10%">
+				<input type="number" name="max" min="10" max="100000" value="100000" placeholder="max">
 			</div>
 			<div class="dropdown">
 				<button class="dropbtn">Offer</button>
@@ -24,6 +34,7 @@
 				<a href="#">> 70%</a>
 				</div>
 			</div>
+			<a href="#" onclick="get_Filters()">Filter</a>
 		</div>
 		<div class="screen1 right">
 			{{#each data}}
@@ -45,14 +56,6 @@
   			</div>
 			{{/each}}
 		</div>
-		<script>
-			var slider = document.getElementById("myRange");
-			var output = document.getElementById("demo");
-			output.innerHTML = slider.value;
-			slider.oninput = function() {
-  				output.innerHTML = this.value;
-			}
-		</script>
 	</body>
 </html>
 
