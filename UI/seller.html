@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./style.css">
+		<script src="./jquery.js"></script>
+		<title>File Upload</title>
+	</head>
+	<body style="background-color:lightblue;">
+		<div class="nav-bar">	
+			<ul class="main-nav">
+					<li><a href="#" >Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Help</a></li>
+			</ul>
+		</div>
+		<div class="screen1 left">
+			<img src=../user.png style="height:60%;width:150%;padding-left: 10%;">
+		</div>
+		<div class="scrren1 right">
+			<form class="form3">
+				<h2>Upload a file</h2>
+				<p>Name of the product:
+				<input class="seller_details" align="left" type="text" id="name"></p>
+				<p>Price:
+				<input class="seller_details" align="left" type="text" id="price"></p>
+				<p>Offer:
+				<input class="seller_details" align="left" type="text" id="offer"></p>
+				<p>Category:
+				<input class="seller_details" align="left" type="text" id="category"></p>
+				<p>Description:
+				<input class="seller_details" align="left" type="text" id="description"></p>
+				<input class="file" align="left" type="file" id="profile">
+				<input id="submit3" align="left" id="uploadButton" type="button" value="submit">
+			</form>
+		</div>
+		<script type="text/javascript">
+		$("#uploadButton").click(function() {
+			var fd = new FormData();
+			var files = $('#profile')[0].files[0];
+			fd.append('file',files);
+			var name = document.getElementById("name").value;
+			fd.append("name",name);
+			var price = document.getElementById("price").value;
+			fd.append("price",price);
+			var offer = document.getElementById("offer").value;
+			fd.append("offer",offer);
+			var category = document.getElementById("category").value;
+			fd.append("category",category);
+			var description= document.getElementById("description").value;
+			fd.append("description",description);
+			$.ajax({
+				url: '/upload',
+				type: 'post',
+				data: fd,
+				contentType: false,
+				processData: false,
+				success: function(response){
+					alert(response);
+				},
+			});
+		})
+		</script>
+	</body>
+</html>

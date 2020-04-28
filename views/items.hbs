@@ -8,14 +8,51 @@
 	</head>
 	<body>
 		<script>
+			function get_offer(){
+				if(document.getElementById('offer_1').checked) { 
+					var offer = new Object();
+					offer[0]=0;
+					offer[1]=10;
+					return offer;
+				}
+				if(document.getElementById('offer_2').checked) { 
+					var offer = new Object();
+					offer[0]=10;
+					offer[1]=20;
+					return offer;
+				}
+				if(document.getElementById('offer_3').checked) { 
+					var offer = new Object();
+					offer[0]=20;
+					offer[1]=30;
+					return offer;
+				}
+				if(document.getElementById('offer_4').checked) { 
+					var offer = new Object();
+					offer[0]=30;
+					offer[1]=40;
+					return offer;
+				} 
+			}
 			function get_Filters(){
-				var min = document.getElementsByName("min")[0].value;
-				var max = document.getElementsByName("max")[0].value;
-				var category = location.search.split("=")
-				var category=category[category.length-1]
-				location.href="/filter_products?min="+min+"&max="+max+"&category="+category;
+			var offer = get_offer();
+			var min = document.getElementsByName("min")[0].value;
+			var max = document.getElementsByName("max")[0].value;
+			var category = location.search.split("=")
+			var category=category[category.length-1]
+			location.href="/filter_products?min="+min+"&max="+max+"&offer1="+offer[0]+"&offer2="+offer[1]+"&category="+category;
 			}
 		</script>
+		<div class="nav-bar">	
+			<ul class="main-nav">
+					<li><a href="../firstpage.html" >Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Help</a></li>
+					<li><a href="./cart.html">Cart</a></li>
+			</ul>
+		</div>
+		
 		<div class="screen1 left">
 			<p align="center">FILTERS</p>
 			<p class="filter_text">Price</p>
@@ -24,15 +61,15 @@
 				<input type="number" name="max" min="10" max="100000" value="100000" placeholder="max">
 			</div>
 			<div class="dropdown">
-				<button class="dropbtn">Offer</button>
-				<div class="dropdown-content">
-				<a href="#">< 10%</a>
-				<a href="#">10% - 20%</a>
-				<a href="#">20% - 30%</a>
-				<a href="#">30% - 50%</a>
-				<a href="#">50% - 70%</a>
-				<a href="#">> 70%</a>
-				</div>
+				<p>Offer</p>
+				<input type="radio" id="offer_1" name="offer">
+				<label for="offer_1">< 10%</label><br>
+				<input type="radio" id="offer_2" name="offer">
+				<label for="offer_2">10% - 20%</label><br>
+				<input type="radio" id="offer_3" name="offer">
+				<label for="offer_3">20% - 30%</label><br>
+				<input type="radio" id="offer_4" name="offer">
+				<label for="offer_4">> 40%</label><br>
 			</div>
 			<a href="#" onclick="get_Filters()">Filter</a>
 		</div>

@@ -7,48 +7,29 @@
 		<script src="./jquery.js"></script>
 	</head>
 	<body>
-		<div class="category-section1">
-			<div class="categ-img">
-				<a href="/items?type=fashion"><img src="./images/watch.jpg" style="width:80%" height="90%">
-				<div class="center">Fashion</div></a>
-			</div>
+		<div class="nav-bar">	
+			<ul class="main-nav">
+					<li><a href="#" >Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Help</a></li>
+			</ul>
 		</div>
-		<div class="category-section2">
-			<div class="categ-img">
-				<a href="/items?type=electronics"><img src="./images/belt.jpg" style="width:80%" height="90%">
-				<div class="center">Electronics</div></a>
-			</div>
+		<div class="categ-img1">
+			<a href="/items?type=fashion"><img src="../categ_img1.jpg" style="width:100%" height="110%">
+			<div class="center">Fashion</div></a>
 		</div>
-		<div class="category-section3">
-			<div class="categ-img">
-				<a href="/items?type=stationary"><img src="./images/specs.jpg" style="width:80%" height="90%">
-				<div class="center">Stationary</div></a>
-			</div>
+		<div class="categ-img">
+			<a href="/items?type=electronics"><img src="../categ_img2.jpg" style="width:90%" height="90%">
+			<div class="center">Electronics</div></a>
 		</div>
-		<!-- <script type="text/javascript">
-			$(document).ready(function(){
-				var category="fashion";
-				const data={
-				category:category
-				}
-				var card = "";
-				$.ajax({
-					url: '/api/getProducts',
-					type: 'get',
-					dataType:"json",
-					contentType: "application/json",
-					data: data,
-					async:true,
-					success: function(response){
-						console.log(response);
-						return true;
-					},
-					error:function(e){
-						console.log(e);
-						return false
-					}
-				});
-			})
-	</script> -->
+		<div class="categ-img">
+			<a href="/items?type=stationary"><img src="../categ_img3.jpg" style="width:90%" height="90%">
+			<div class="center">Stationary</div></a>
+		</div>
+		<div class="categ-img">
+			<a href="seller.html"><img src="../categ_img4.jpg" style="width:90%" height="100%">
+			<div class="center">Sell a product</div></a>
+		</div>
 	</body>
 </html>

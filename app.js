@@ -68,8 +68,8 @@ app.post('/auth_signup', function(request, response) {
 	}
 });
 app.get("/filter_products",function(req,res){
-	const {min,max,category}=req.query;
-	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=? and price > ? and price < ? ',[category,min,max],(error,results) => {
+	const {min,max,offer1,offer2,category}=req.query;
+	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=? and price >= ? and price <= ? and offer >= ? and offer <= ?',[category,min,max,offer1,offer2],(error,results) => {
 		if(error) {
 			console.log(error)
 		} else {
@@ -108,6 +108,36 @@ app.get('/items', (req, res) => {
 	});
 	
 })
+const storage = multer.diskStorage({
+	destination:'./UI/images/',
+	filename:function(req, file, callback) {
+	  var files = file.originalname;
+	  callback(null, files);
+	}
+  });
+  const uploadImages = multer({
+	storage: storage
+  });
+  app.post('/upload', uploadImages.single('file'),(req,res)=>{
+	const {name,price,offer,category,description}=req.body
+	if(!req.file){
+		  res.send("enter a search file")
+	  }
+	  else{
+		  const { file } = req
+		  connection.query('INSERT INTO PRODUCTS (name,category,price,offer,imgpath,description) VALUES (?, ?, ?, ?, ?, ?)',[name,category,price,offer,"./images/"+name,description], function(error, results){
+			  if(error){
+				  console.log("db not updated",error)
+
+			  }
+			  else{
+				  console.log("updated successfully")
+				  res.send("Uploaded successfully")
+			  }
+		  });
+	  }
+  })
+  
 app.listen(3000);
 
 
