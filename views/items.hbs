@@ -1,13 +1,13 @@
 <html>
-	<head>
-		<title>
-			items
-		</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+    <head>
+        <title>Cards</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../styles.css">
 		<script src="./jquery.js"></script>
-	</head>
-	<body>
-		<script>
+    </head>
+    <body>
+	<script>
 			function get_offer(){
 				if(document.getElementById('offer_1').checked) { 
 					var offer = new Object();
@@ -32,7 +32,9 @@
 					offer[0]=30;
 					offer[1]=40;
 					return offer;
-				} 
+				}
+				offer=[0,100];
+				return offer; 
 			}
 			function get_Filters(){
 			var offer = get_offer();
@@ -52,7 +54,6 @@
 					<li><a href="./cart.html">Cart</a></li>
 			</ul>
 		</div>
-		
 		<div class="screen1 left">
 			<p align="center">FILTERS</p>
 			<p class="filter_text">Price</p>
@@ -73,34 +74,42 @@
 			</div>
 			<a href="#" onclick="get_Filters()">Filter</a>
 		</div>
-		<div class="screen1 right">
+		
+        <div class="screen1 right">
+        <div class="container">
 			{{#each data}}
-			<div class="flip-card">
- 			 	<div class="flip-card-inner">
-    				<div class="flip-card-front">
-      					<img src={{this.imgpath}} alt="Avatar" class="img_card">
-						<h4><b>{{this.name}}</b></h4>
-					</div>
-    				<div class="flip-card-back">
-      					<h4><b>{{this.name}}</b></h4> 
-						<p>Category : {{this.category}}</p>
-						<p>Price : {{this.price}}</p>
-						<p>Offer : {{this.offer}}%</p>
-						<p>Description : {{this.description}}</p>
-						<button class="button_add">Add to Cart</button>
-					</div>
+			<div
+                class="card"
+                data-tilt
+                data-tilt-maz="30"
+                data-tilt-glare
+                dtat-tilt-max-glare="0.55"
+            >
+                <div class="img-container">
+                    <img
+                        class="shoe"
+                        src={{this.imgpath}} 
+						alt=""    
+                    />
+                </div>
+				<div>
+                <div class="category">
+                        <div class="sub-head">{{this.category}}</div>
+                        {{this.name}}
+                </div>
+                <div class="description">Price : {{this.price}}<br>Offer : {{this.offer}}%<br>Description : {{this.description}}</div>
+                
 				</div>
-  			</div>
+				<a href="#">
+                    <button class="add_to_cart">Add to Cart</button>
+                </a>
+            </div>
 			{{/each}}
-		</div>
-	</body>
+        </div>
+    </div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.4.1/vanilla-tilt.min.js"></script>
+
+    </body >
 </html>
-
-
-
-
-
-
-
 
 
