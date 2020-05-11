@@ -32,7 +32,7 @@ app.post('/auth_login', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.rollno = rollno;
-				console.log("loggedin successfully", results);
+				console.log("loggedin successfully");
 				response.status(200).json({ message: "Login succesful", userid: results[0].id})
 			} else {
 				response.status(500).json({ message: "Incorrect Username and/or Password!"})
@@ -107,28 +107,30 @@ app.get('/items', (req, res) => {
 		}
 	});
 })
-const getProductsById = (id,callback) => {
-	console.log("id:",id);
-	connection.query('SELECT * FROM PRODUCTS WHERE ID=?',[id],(error,results) => {
-		if(error) {
-			callback(error,null);
-		} else {
-			callback(null,results);
-		}
-	});
-}
-
-app.post("/addtocart",(req,res) => {
-	const { userId, productId} = req.body;
-	console.log(userId, productId);
-	connection.query('insert into cart (product_id,user_id) values(?,?)',[productId,userId],function(error,results){		
+app.get('/cart', (req,res) => {
+	const {userid} =req.query;
+	console.log(userid);
+	connection.query('select products.name,products.category,products.price,products.offer,products.imgpath from products join cart on products.id=cart.product_id where cart.user_id=?', [userid] ,function(error,results){		
 		if(error){
 			console.log(error)
 		}
 		else{
-			console.log(results)
+			res.render('cart',{
+				data: results,
+				message: "success"
+			})
 		}
-	// console.log(username+"signed in successfully");	
+});
+})
+app.post("/addtocart",(req,res) => {
+	const { userId, productId} = req.body;
+	connection.query('insert into cart (product_id,user_id) values(?,?)',[productId,userId],function(error,results){		
+		if(error){
+			console.log("cart not updated")
+		}
+		else{
+			console.log("cart updated")
+		}
 });
 })
 const storage = multer.diskStorage({

@@ -7,64 +7,71 @@
 		<script src="./jquery.js"></script>
     </head>
     <body>
-	<script>
+		<script>
+			window.onload = function(){
+				const value=localStorage.getItem("userid");
+			}
 			function get_offer(){
-				if(document.getElementById('offer_1').checked) { 
-					var offer = new Object();
-					offer[0]=0;
-					offer[1]=10;
-					return offer;
-				}
-				if(document.getElementById('offer_2').checked) { 
-					var offer = new Object();
-					offer[0]=10;
-					offer[1]=20;
-					return offer;
-				}
-				if(document.getElementById('offer_3').checked) { 
-					var offer = new Object();
-					offer[0]=20;
-					offer[1]=30;
-					return offer;
-				}
-				if(document.getElementById('offer_4').checked) { 
-					var offer = new Object();
-					offer[0]=30;
-					offer[1]=40;
-					return offer;
-				}
-				offer=[0,100];
-				return offer; 
+			if(document.getElementById('offer_1').checked) { 
+				var offer = new Object();
+				offer[0]=0;
+				offer[1]=10;
+				return offer;
 			}
-			function get_Filters(){
-			var offer = get_offer();
-			var min = document.getElementsByName("min")[0].value;
-			var max = document.getElementsByName("max")[0].value;
-			var category = location.search.split("=")
-			var category=category[category.length-1]
-			location.href="/filter_products?min="+min+"&max="+max+"&offer1="+offer[0]+"&offer2="+offer[1]+"&category="+category;
+			if(document.getElementById('offer_2').checked) { 
+				var offer = new Object();
+				offer[0]=10;
+				offer[1]=20;
+				return offer;
 			}
-			function AddToCart(value){
-				console.log(value)
-				const data = {
-					userId: localStorage.getItem("userid"),
-					productId: value
-				}
-				$.ajax({
-				url: "/addtocart",
-				type:"POST",
-				dataType: "json",
-				contentType: "application/json",
-				data: JSON.stringify(data),
-				success: function (res) {
-					console.log(res)
-				},
-				error: function(err) {
-					console.log(err)
-					return false
-				}
-			})
+			if(document.getElementById('offer_3').checked) { 
+				var offer = new Object();
+				offer[0]=20;
+				offer[1]=30;
+				return offer;
 			}
+			if(document.getElementById('offer_4').checked) { 
+				var offer = new Object();
+				offer[0]=30;
+				offer[1]=40;
+				return offer;
+			}
+			offer=[0,100];
+			return offer; 
+		}
+		function get_Filters(){
+		var offer = get_offer();
+		var min = document.getElementsByName("min")[0].value;
+		var max = document.getElementsByName("max")[0].value;
+		var category = location.search.split("=")
+		var category=category[category.length-1]
+		location.href="/filter_products?min="+min+"&max="+max+"&offer1="+offer[0]+"&offer2="+offer[1]+"&category="+category;
+		}
+		function AddToCart(value){
+			console.log(value)
+			const data = {
+				userId: localStorage.getItem("userid"),
+				productId: value
+			}
+			$.ajax({
+			url: "/addtocart",
+			type:"POST",
+			dataType: "json",
+			contentType: "application/json",
+			data: JSON.stringify(data),
+			success: function (res) {
+				console.log(res)
+			},
+			error: function(err) {
+				console.log(err)
+				return false
+			}
+		})
+		}
+		function cart(){
+			const value=localStorage.getItem("userid");
+			location.href="/cart?userid="+value;
+		}
 		</script>
 		<div class="nav-bar">	
 			<ul class="main-nav">
@@ -72,7 +79,7 @@
 					<li><a href="#">About</a></li>
 					<li><a href="#">Contact</a></li>
 					<li><a href="#">Help</a></li>
-					<li><a href="./cart.html">Cart</a></li>
+					<li><a href="#" onclick="cart()">Cart</a></li>
 			</ul>
 		</div>
 		<div class="screen1 left">
