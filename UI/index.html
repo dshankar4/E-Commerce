@@ -52,6 +52,7 @@
 				data: JSON.stringify(data),
 				success: function (res) {
 					console.log(res)
+					localStorage.setItem("userid", res.userid)
 					window.location.href = "./firstpage.html"
 				},
 				error: function(err) {

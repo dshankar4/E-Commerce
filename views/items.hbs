@@ -44,6 +44,27 @@
 			var category=category[category.length-1]
 			location.href="/filter_products?min="+min+"&max="+max+"&offer1="+offer[0]+"&offer2="+offer[1]+"&category="+category;
 			}
+			function AddToCart(value){
+				console.log(value)
+				const data = {
+					userId: localStorage.getItem("userid"),
+					productId: value
+				}
+				$.ajax({
+				url: "/addtocart",
+				type:"POST",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(data),
+				success: function (res) {
+					console.log(res)
+				},
+				error: function(err) {
+					console.log(err)
+					return false
+				}
+			})
+			}
 		</script>
 		<div class="nav-bar">	
 			<ul class="main-nav">
@@ -102,7 +123,7 @@
 				</div>
 				<div>
 					<a href="#">
-                    	<button class="add_to_cart">Add to Cart</button>
+                    	<button onclick="AddToCart('{{this.id}}')" class="add_to_cart">Add to Cart</button>
                 	</a>
 				</div>
             </div>
