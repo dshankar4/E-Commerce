@@ -55,7 +55,7 @@ body{
     text-shadow: 0 2px 20px rgba(0,0,0,0.5);
     align-items: center;
 	height:50px;
-    width:100px;
+    width:160px;
 }
 .category .sub-head{
     font-size:12px;
@@ -67,6 +67,7 @@ body{
     text-align: justify;
     text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     font-size:12px;
+    width:160px;
 }
 body a{
     text-decoration: none;
