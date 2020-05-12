@@ -110,7 +110,7 @@ app.get('/items', (req, res) => {
 app.get('/cart', (req,res) => {
 	const {userid} =req.query;
 	console.log(userid);
-	connection.query('select products.name,products.category,products.price,products.offer,products.imgpath from products join cart on products.id=cart.product_id where cart.user_id=?', [userid] ,function(error,results){		
+	connection.query('select products.name,products.category,products.price,products.offer,products.imgpath,cart.cartid from products join cart on products.id=cart.product_id where cart.user_id=?', [userid] ,function(error,results){		
 		if(error){
 			console.log(error)
 		}
@@ -130,6 +130,17 @@ app.post("/addtocart",(req,res) => {
 		}
 		else{
 			console.log("cart updated")
+		}
+});
+})
+app.post("/updatecart",(req,res) => {
+	const { cartid } = req.body;
+	connection.query('delete from cart where cartid=?',[cartid],function(error,results){		
+		if(error){
+			console.log(error)
+		}
+		else{
+			console.log(results)
 		}
 });
 })

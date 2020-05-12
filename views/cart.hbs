@@ -10,6 +10,29 @@
     {{!-- <script src="./jquery.js"></script> --}}
    </head>
 <body style="background-color: #333333;">
+    <script>
+        function deleteRow(r,cartid) {
+          var i = r.parentNode.parentNode.rowIndex;
+          document.getElementById("myTable").deleteRow(i);
+          const data = {
+              cartid: cartid
+          }
+            $.ajax({
+			  url: "/updatecart",
+			  type:"POST",
+		      dataType: "json",
+			  contentType: "application/json",
+			  data: JSON.stringify(data),
+			  success: function (res) {
+			    console.log(res)
+			  },
+			  error: function(err) {
+			    console.log(err)
+				return false
+			  }
+		    })
+        }
+    </script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="row bootstrap snippets hi">
     <div class="col-lg-9 col-md-9 col-sm-12 container_table">
@@ -18,7 +41,7 @@
         </div>
         <div class="col-lg-12 col-sm-12 hero-feature cart_data">
             <div class="table-responsive">
-                <table class="table table-bordered tbl-cart">
+                <table class="table table-bordered tbl-cart" id="myTable">
                     <thead>
                         <tr>
                             <td class="hidden-xs">Image</td>
@@ -34,7 +57,7 @@
                         <tr>
                             <td class="hidden-xs">
                                 <a href="#">
-                                    <img src="{{this.imgpath}}" alt="Age Of Wisdom Tan Graphic Tee" title="" width="47" height="47">
+                                    <img src="{{this.imgpath}}" title="" width="47" height="47">
                                 </a>
                             </td>
                             <td><a href="#">{{this.name}}</a>
@@ -47,7 +70,7 @@
                                 {{this.price}}
                             </td>
                             <td class="text-center">
-                                <a href="#" class="remove_cart" rel="2">
+                                <a href="#" class="remove_cart" rel="2" onclick="deleteRow(this,'{{this.cartid}}')">
                                     <i class="fa fa-trash-o"></i>
                                 </a>
                             </td>

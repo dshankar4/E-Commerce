@@ -1,20 +1,20 @@
 body {
 	font-family: 'Ubuntu', sans-serif;
-	background-color:#263145;
+	background-color:#333333;
 }
 header{
-	background-image:url(ecommerce.jpg);
+	/* background-image:url(ecommerce.jpg); */
 	height:100vh;
 	background-size:cover;
 	background-position:center;
 }
 .signin {
-	background-color:#ffff;
+	background-color:#263145;
 	width: 450px;
 	height: 450px;
 	margin: 10px 20px 40px 440px;
 	border-radius: 1.5em;
-	opacity:0.6;
+	/* opacity:0.6; */
 }
 .topbar{
 	margin-left:440px;
@@ -25,11 +25,11 @@ header{
 	color: #8C55AA;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
-	font-size: 40px;
-	margin-right:20px;
-	margin-left:0px;
+	font-size: 20px;
+	margin-right:0px;
+	margin-left:74px;
 	border-radius:5em;
-	background: linear-gradient(to right, #9C27B0, #E040FB);
+	background: #F6376D;
 	color: #fff;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -41,9 +41,9 @@ header{
 	color: #8C55AA;
 	font-family: 'Ubuntu', sans-serif;
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 20px;
 	border-radius:5em;
-	background: linear-gradient(to right, #9C27B0, #E040FB);
+	background: #F6376D;
 	color: #fff;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -81,7 +81,7 @@ header{
 }
 .signin_details {
 	width: 80%;
-	color: rgb(38, 50, 56);
+	color:white;
 	font-weight: 800;
 	font-size: 30px;
 	letter-spacing: 1px;
@@ -100,7 +100,7 @@ header{
 }
 .signup_details {
 	width: 80%;
-	color: rgb(38, 50, 56);
+	color: white;
 	font-weight: 800;
 	font-size: 20px;
 	letter-spacing: 1px;
@@ -175,7 +175,7 @@ header{
 	cursor: pointer;
 	border-radius: 5em;
 	color: #fff;
-	background: linear-gradient(to right, #9C27B0, #E040FB);
+	background:royalblue;
 	border: 0;
 	padding-left: 40px;
 	padding-right: 40px;
