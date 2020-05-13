@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    {{!-- <script src="./jquery.js"></script> --}}
    </head>
 <body style="background-color: #333333;">
     <script>
@@ -24,7 +23,8 @@
 			  contentType: "application/json",
 			  data: JSON.stringify(data),
 			  success: function (res) {
-			    console.log(res)
+                  console.log(res)
+                  window.location.reload();
 			  },
 			  error: function(err) {
 			    console.log(err)
@@ -78,7 +78,7 @@
                         {{/each}}
                          <tr>
                             <td colspan="4" align="right">Total</td>
-                            <td class="total" colspan="2"><b>$ 163.47</b>
+                            <td class="total" colspan="2"><p id="price">{{total}}</p>
                             </td>
                         </tr>
                     </tbody>
@@ -86,7 +86,7 @@
             </div>
             <div class="btn-group btns-cart">
                 <a href="../firstpage.html"<button type="button" class="btn shop_btn"><i class="fa fa-arrow-circle-left"></i> Continue Shopping</button></a>
-                <button type="button" class="btn btn-primary">Checkout <i class="fa fa-arrow-circle-right"></i></button>
+                <a href="./purchase.html"<button type="button" class="btn btn-primary" id="checkout">Checkout <i class="fa fa-arrow-circle-right"></i></button></a>
             </div>
         </div>
     </div>

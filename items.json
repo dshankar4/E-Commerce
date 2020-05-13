@@ -1,0 +1,110 @@
+{
+    "fashion": [
+      {
+        "id": 1,
+        "name": "shoe",
+        "price": 1000,
+        "imgName": "shoe.png"
+      },
+      {
+        "id": 2,
+        "name": "pant",
+        "price": 1500,
+        "imgName": "pant"
+      },
+      {
+        "id": 3,
+        "name": "specs",
+        "price": 1500,
+        "imgName": "specs.png"
+      },
+      {
+        "id": 4,
+        "name": "belt",
+        "price": 500,
+        "imgName": "belt.png"
+      },
+      {
+        "id": 5,
+        "name": "socks",
+        "price": 200,
+        "imgName": "socks.png"
+      }
+    ],
+    "electronics": [
+      {
+        "id": 8,
+        "name": "laptop",
+        "price": 40000,
+        "imgName": "laptop.png"
+      },
+      {
+        "id": 9,
+        "name": "phone",
+        "price": 20000,
+        "imgName": "phone.png"
+      },
+      {
+        "id": 10,
+        "name": "charger",
+        "price": 500,
+        "imgName": "charger.png"
+      },
+      {
+        "id": 11,
+        "name": "speaker",
+        "price": 10000,
+        "imgName": "speaker.png"
+      },
+      {
+        "id": 12,
+        "name": "google home",
+        "price": 2000,
+        "imgName": "googlehome.png"
+      }
+    ],
+    "stationary":[
+      {
+        "id": 13,
+        "name": "brown sheet",
+        "price": 40,
+        "imgName": "brownsheet.png"
+      },
+      {
+        "id": 14,
+        "name": "sticky notes",
+        "price": 200,
+        "imgName": "stickynotes.png"
+      },
+      {
+        "id": 15,
+        "name": "pencil stand",
+        "price": 100,
+        "imgName": "pencilstand.png"
+      },
+      {
+        "id": 16,
+        "name": "parker pen",
+        "price": 200,
+        "imgName": "parker.png"
+      },
+      {
+        "id": 17,
+        "name": "pencil box",
+        "price": 160,
+        "imgName": "pencils.png"
+      },
+      {
+        "id": 18,
+        "name": "notebook",
+        "price": 200,
+        "imgName": "notebook.png"
+      },
+      {
+        "id": 42,
+        "name": "pouch",
+        "price": 160,
+        "imgName": "pouch.png"
+      }
+    ]
+  }

@@ -1,9 +1,16 @@
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config()
+  }
+  
+  const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+  const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
 var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var path = require('path');
 const multer=require('multer');
+const stripe=require('stripe')(stripeSecretKey);
 var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
@@ -115,8 +122,15 @@ app.get('/cart', (req,res) => {
 			console.log(error)
 		}
 		else{
+			var total=0;
+			results.map(_res => {
+				total+=_res.price;
+			})
+			console.log(total);
 			res.render('cart',{
 				data: results,
+				total:total,
+				stripePublicKey: stripePublicKey,
 				message: "success"
 			})
 		}
@@ -141,9 +155,42 @@ app.post("/updatecart",(req,res) => {
 		}
 		else{
 			console.log(results)
+			res.status(200).json({ message: "updated cart"})
 		}
 });
 })
+app.get('/cartSum',(req,res) => {
+	const { userid } =req.query;
+	connection.query('select sum(products.price) as cost from products join cart on products.id=cart.product_id where cart.user_id=?',[userid],function(error,result){
+		if(error){
+			console.log(error);
+		}
+		else{
+			console.log(result);
+			res.status(200).json({ message: "cart value", total: result[0].cost})
+		}
+	});
+})
+app.post('/charge', (req, res) => {
+	const { total } = req.body;
+	console.log(req.body)
+	try {
+        stripe.customers.create({
+            name: req.body.name,
+            description: 'test description',
+            email: req.body.email,
+            source: 'tok_visa',
+            address:{city:'erode', country:'india', line1:'anna nagar', line2:'erode', postal_code:'638012', state:'tn'}
+        }).then(customer => stripe.charges.create({
+            amount: parseInt(req.body.price)*100,
+            currency: 'inr',
+            customer: customer.id,
+            description: 'Thank you for your generous donation.'
+        })).then(() => res.render('placed'))
+            .catch(err => console.log(err))
+    } catch (err) { res.send(err) }
+})
+
 const storage = multer.diskStorage({
 	destination:'./UI/images/',
 	filename:function(req, file, callback) {
