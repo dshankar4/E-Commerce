@@ -109,7 +109,7 @@ body .js-tilt-glare{
 	flex-wrap:wrap;
 }
  .filter_text{
-	  margin:10% 10% 1% 10%;
+      margin:10% 10% 1% 10%;
   }
   .main-nav{
 	float:right;
@@ -322,4 +322,37 @@ thead{
 .shop_btn{
     background-color: #F6376D;
     color: white;
+}
+.h1tag{
+    color:white;
+    margin-top: 200px;
+    margin-left: 400px;
+}
+.purchase{
+    margin-top: 20px;
+    margin-left: 560px;
+}
+.submit_pm{
+    background-color: #F6376D;
+}
+.dropdown{
+    margin: 10% 10% 1% 10%;
+}
+.filter_submit{
+    margin:10% 10% 1% 36%;
+    color:#F6376D;
+}
+.filter{
+    color: #F6376D;
+}
+.tech{
+    color:#F6376D;
+    text-align: center;
+}
+.about_container{
+    background-color:#263145;
+	width: 880px;
+	height: 600px;
+	margin: 10px 20px 40px 200px;
+	border-radius: 1.5em;
 }

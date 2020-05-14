@@ -167,26 +167,39 @@ app.get('/cartSum',(req,res) => {
 		}
 		else{
 			console.log(result);
-			res.status(200).json({ message: "cart value", total: result[0].cost})
+			res.status(200).json({ message: "cart value", total: result[0].cost,userid:userid})
 		}
 	});
 })
+app.post('/order',(req,res) => {
+	const { userid,total } = req.body
+	connection.query('insert into orders (user_id,price) values(?,?)',[userid,total],function(error,results){		
+		if(error){
+			console.log(error)
+		}
+		else{
+			console.log("order updated")
+		}
+});
+})
 app.post('/charge', (req, res) => {
-	const { total } = req.body;
-	console.log(req.body)
+	const { userid,name,email,price } = req.body
 	try {
         stripe.customers.create({
-            name: req.body.name,
+            name: name,
             description: 'test description',
-            email: req.body.email,
+            email: email,
             source: 'tok_visa',
             address:{city:'erode', country:'india', line1:'anna nagar', line2:'erode', postal_code:'638012', state:'tn'}
         }).then(customer => stripe.charges.create({
-            amount: parseInt(req.body.price)*100,
+            amount: parseInt(price)*100,
             currency: 'inr',
             customer: customer.id,
             description: 'Thank you for your generous donation.'
-        })).then(() => res.render('placed'))
+        })).then(() => res.render('placed',{
+			email:email,
+			price:price
+		}))
             .catch(err => console.log(err))
     } catch (err) { res.send(err) }
 })

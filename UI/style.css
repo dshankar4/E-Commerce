@@ -3,7 +3,7 @@ body {
 	background-color:#333333;
 }
 header{
-	/* background-image:url(ecommerce.jpg); */
+	background-image:url(ecommerce.jpg); 
 	height:100vh;
 	background-size:cover;
 	background-position:center;
@@ -14,7 +14,7 @@ header{
 	height: 450px;
 	margin: 10px 20px 40px 440px;
 	border-radius: 1.5em;
-	/* opacity:0.6; */
+	opacity:0.6;
 }
 .topbar{
 	margin-left:440px;
@@ -56,6 +56,7 @@ header{
 	left:50%;
 	transform:translate(-50%,50%);
 }
+
 .categ-img1{
 	float: left;
 	width: 60%;
@@ -73,11 +74,11 @@ header{
 	color:white;
 }
 .nav-bar{
-	height:10%;
+	height:6%;
 	width: 100%;
 	padding:0px;
 	margin:0px;
-	background-color:#687C94;
+	background-color:#191818;
 }
 .signin_details {
 	width: 80%;
@@ -128,6 +129,7 @@ header{
 }
 .form3{
 	margin:4% 10% 10% 40%;
+	color: white;
 }
 .seller_details{
 	display: inline-block;
@@ -190,7 +192,7 @@ header{
 	cursor: pointer;
 	border-radius: 5em;
 	color: #fff;
-	background: linear-gradient(to right, #9C27B0, #E040FB);
+	background: royalblue;
 	border: 0;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -205,7 +207,7 @@ header{
 	cursor: pointer;
 	border-radius: 5em;
 	color: #fff;
-	background: linear-gradient(to right, darkblue,royalblue);
+	background: #F6376D;
 	border: 0;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -213,17 +215,10 @@ header{
 	padding-top: 10px;
 	font-family: 'Ubuntu', sans-serif;
 	margin-top:5%;
-	margin-left: 5%;
+	margin-left: 30%;
 	font-size: 20px;
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
-.forgot {
-	text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-	color: #E1BEE7;
-	padding-top: 25px;
-	
-}
-
 a {
 	text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
 	color: #E1BEE7;
@@ -236,7 +231,7 @@ a {
 }
 .left {
 	left:0;
-	background-color:#B3C6E4;
+	background-color:#191818;
 	width:16%;
 }
 .right {
@@ -339,8 +334,8 @@ a {
   }
   .main-nav{
 	float:right;
-	line-style:none;
-	margin-top:20px;
+	margin-top:10px;
+	margin-right: 10px;
 }
 .main-nav li{
 	display:inline-block;
@@ -358,5 +353,8 @@ a {
 }
 .main-nav li a:hover,
 .main-nav li a:active{
-	border-bottom:2px solid orange;
+	border-bottom:2px solid #F6376D;
+}
+.product{
+	color: #F6376D;
 }

@@ -1,7 +1,33 @@
 <html>
     <head>
+            <link rel="stylesheet" href="../styles.css">
+            <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+            <script src="./jquery.js"></script>
     </head>
-    <body>
-        <hi>hi</hi>
+    <body style="background-color: #333333;">
+        <script>
+        $(document).ready(function() {
+            const data = {
+                userid:localStorage.getItem("userid"),
+                total:{{price}}
+            }
+            $.ajax({
+                url: "/order",
+			    type:"POST",
+                dataType: "json",
+                contentType: "application/json",
+                data:JSON.stringify(data),
+                success: function (res) {
+                    console.log(res)
+                },
+                error: function(err) {
+                    console.log(err)
+                    return false
+                }
+            })
+        })
+    </script>
+        <h1 class="h1tag">Your order for {{price}} have been placed</h1>
+        <a href="../firstpage.html"<button type="button" class="btn shop_btn purchase"><i class="fa fa-arrow-circle-left"></i> Continue Shopping</button></a>
     </body>
 </html>
