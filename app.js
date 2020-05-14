@@ -104,7 +104,6 @@ const getProductsByType = (type,callback) => {
 
 app.get('/items', (req, res) => {
 	const category=req.query.type;
-	console.log(category) 
 	getProductsByType(category,(error,result)=>{
 		if(error){
 			res.send(error);
@@ -119,7 +118,6 @@ app.get('/items', (req, res) => {
 })
 app.get('/cart', (req,res) => {
 	const {userid} =req.query;
-	console.log(userid);
 	connection.query('select products.name,products.category,products.price,products.offer,products.imgpath,cart.cartid from products join cart on products.id=cart.product_id where cart.user_id=?', [userid] ,function(error,results){		
 		if(error){
 			console.log(error)
@@ -129,7 +127,6 @@ app.get('/cart', (req,res) => {
 			results.map(_res => {
 				total+=_res.price;
 			})
-			console.log(total);
 			res.render('cart',{
 				data: results,
 				total:total,
@@ -157,7 +154,6 @@ app.post("/updatecart",(req,res) => {
 			console.log(error)
 		}
 		else{
-			console.log(results)
 			res.status(200).json({ message: "updated cart"})
 		}
 });
@@ -169,7 +165,6 @@ app.get('/cartSum',(req,res) => {
 			console.log(error);
 		}
 		else{
-			console.log(result);
 			res.status(200).json({ message: "cart value", total: result[0].cost,userid:userid})
 		}
 	});
@@ -198,7 +193,7 @@ app.post('/charge', (req, res) => {
             amount: parseInt(price)*100,
             currency: 'inr',
             customer: customer.id,
-            description: 'Thank you for your generous donation.'
+            description: 'Thank you for purchasing.'
         })).then(() => res.render('placed',{
 			email:email,
 			price:price
