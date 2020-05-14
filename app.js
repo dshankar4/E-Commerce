@@ -4,6 +4,9 @@ if (process.env.NODE_ENV !== 'production') {
   
   const stripeSecretKey = process.env.STRIPE_SECRET_KEY
   const stripePublicKey = process.env.STRIPE_PUBLIC_KEY
+  const mysql_username = process.env.MYSQL_USERNAME
+  const mysql_password = process.env.MYSQL_PASSWORD
+  const database = process.env.DATABASE_NAME
 var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
@@ -13,9 +16,9 @@ const multer=require('multer');
 const stripe=require('stripe')(stripeSecretKey);
 var connection = mysql.createConnection({
 	host     : 'localhost',
-	user     : 'root',
-	password : 'root',
-	database : 'shopping'
+	user     : mysql_username,
+	password : mysql_password,
+	database : database
 });
 var app = express();
 app.use(session({
