@@ -64,6 +64,7 @@ header{
 	position:relative;
 	text-align:center;
 	color:white;
+	margin-left: 60px;
 }
 .categ-img{
 	float: left;

@@ -349,10 +349,18 @@ thead{
     color:#F6376D;
     text-align: center;
 }
+.about_page{
+    color:white;
+    padding: 10px 40px 4px 40px;
+}
 .about_container{
     background-color:#263145;
 	width: 880px;
 	height: 600px;
-	margin: 10px 20px 40px 200px;
+	margin: -40px 20px 40px 200px;
 	border-radius: 1.5em;
 }
+.prev{
+    margin:1%;
+}
+

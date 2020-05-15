@@ -144,6 +144,7 @@ app.post("/addtocart",(req,res) => {
 		}
 		else{
 			console.log("cart updated")
+			res.status(200).json({ message: "Cart updated"})
 		}
 });
 })

@@ -7,10 +7,18 @@
 		<script src="./jquery.js"></script>
 	</head>
 	<body>
+		<script>
+			function cart(){
+			const value=localStorage.getItem("userid");
+			location.href="/cart?userid="+value;
+		}
+		</script>
 		<div class="nav-bar">	
 			<ul class="main-nav">
 					<li><a href="./firstpage.html" >Home</a></li>
 					<li><a href="./about.html">About</a></li>
+					<li><a href="#" onclick="cart()">Cart</a></li>
+					<li><a href="./index.html">Logout</a></li>
 			</ul>
 		</div>
 		<div class="categ-img1">
