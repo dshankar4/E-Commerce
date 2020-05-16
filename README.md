@@ -7,4 +7,4 @@ E-Commerce site developed using **node js** and the payment is handled by **Stri
 3. create database using the command- **create database shopping**
 4. In command prompt, run the command- **mysql -u username -p shopping < shopping.sql**
 5. **node app.js**
-6. open **localhost:3000** in your browser
+6. open **http://localhost:3000** in your browser
