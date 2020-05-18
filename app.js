@@ -39,7 +39,10 @@ app.post('/auth_login', function(request, response) {
 	const { password,rollno } = request.body;
 	if (rollno && password) {
 		connection.query('SELECT * FROM accounts WHERE password = ? AND rollno = ?', [password, rollno], function(error, results, fields) {
-			if (results.length > 0) {
+			if(error){
+				response.status(400).json({ message: "Incorrect Username and/or Password!"})
+			}
+			else if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.rollno = rollno;
 				console.log("loggedin successfully");
@@ -58,7 +61,10 @@ app.post('/auth_signup', function(request, response) {
 	const { username,password,rollno } = request.body;
 	if (username && password) {
 		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ? AND rollno = ?', [username, password, rollno], function(error, results, fields) {
-			if (results.length > 0) {
+			if(error){
+				response.status(400).json({ message: "Incorrect Username and/or Password!"})
+			}
+			else if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
 				if (request.session.loggedin) {
@@ -220,7 +226,7 @@ const storage = multer.diskStorage({
 	  }
 	  else{
 		  const { file } = req
-		  connection.query('INSERT INTO PRODUCTS (name,category,price,offer,imgpath,description) VALUES (?, ?, ?, ?, ?, ?)',[name,category,price,offer,"./images/"+name,description], function(error, results){
+		  connection.query('INSERT INTO PRODUCTS (name,category,price,offer,imgpath,description) VALUES (?, ?, ?, ?, ?, ?)',[name,category,price,offer,"./images/"+req.file.filename,description], function(error, results){
 			  if(error){
 				  console.log("db not updated",error)
 

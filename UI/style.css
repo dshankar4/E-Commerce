@@ -204,7 +204,7 @@ header{
 	font-size: 20px;
 	box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
-#submit3{
+.submit3{
 	cursor: pointer;
 	border-radius: 5em;
 	color: #fff;

@@ -130,7 +130,7 @@ CREATE TABLE `products` (
   `category` int(11) NOT NULL,
   `price` int(10) DEFAULT NULL,
   `offer` int(2) DEFAULT NULL,
-  `imgpath` varchar(40) DEFAULT NULL,
+  `imgpath` varchar(100) DEFAULT NULL,
   `description` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cid_idx` (`category`),

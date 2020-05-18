@@ -112,9 +112,9 @@ body .js-tilt-glare{
       margin:10% 10% 1% 10%;
   }
   .main-nav{
-	float:right;
-	line-style:none;
-	margin-top:20px;
+    float:right;
+    margin-top:10px;
+	margin-right: 10px;
 }
 .main-nav li{
 	display:inline-block;
@@ -132,13 +132,13 @@ body .js-tilt-glare{
 }
 .main-nav li a:hover,
 .main-nav li a:active{
-	border-bottom:2px solid orange;
+	border-bottom:2px solid #F6376D;
 }
 .nav-bar{
-	height:10%;
-	width: 99.8%;
-	margin-left:-8px;
-	margin-top:-8px;
+	height:6%;
+	width: 100%;
+	padding:0px;
+	margin:0px;
 	background-color:#191818;
 }
 .row{
