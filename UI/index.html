@@ -57,12 +57,13 @@
 				},
 				error: function(err) {
 					console.log(err)
-					alert("Incorrect username or password")
+					alert(err.responseJSON.message)
 					return false
 				}
 		})
 		});
 		$("#submit2").click(function(e){
+			e.preventDefault();
 			var rollno = document.getElementsByName("rollno")[1].value;
 			var pswd = document.getElementsByName("password")[1].value;
 			var username=document.getElementsByName("username")[0].value;
@@ -78,12 +79,11 @@
 			contentType: "application/json",
 			data: JSON.stringify(data),
 			success: function (res) {
-				console.log(res)
 				localStorage.setItem("userid", res.userid)
 				window.location.href = "./firstpage.html"
 			},
 			error: function(err) {
-				console.log(err)
+				alert(err.responseJSON.message)
 				return false
 			}
 		})	

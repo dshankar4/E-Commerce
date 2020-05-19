@@ -48,38 +48,37 @@ app.post('/auth_login', function(request, response) {
 				console.log("loggedin successfully");
 				response.status(200).json({ message: "Login succesful", userid: results[0].id})
 			} else {
-				response.status(500).json({ message: "Incorrect Username and/or Password!"})
+				response.status(400).json({ message: "Incorrect Username and/or Password!"})
 				console.log('Incorrect Username and/or Password!');
 			}			
 		});
 	} else {
-		console.log('Please enter Username, Password and Rollno!');
+		response.status(400).json({ message: "Enter Username and/or Password!"})
 		response.end();
 	}
 });
 app.post('/auth_signup', function(request, response) {
 	const { username,password,rollno } = request.body;
 	if (username && password) {
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ? AND rollno = ?', [username, password, rollno], function(error, results, fields) {
-			if(error){
-				response.status(400).json({ message: "Incorrect Username and/or Password!"})
-			}
-			else if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				if (request.session.loggedin) {
-					console.log('Welcome back, ' + request.session.username + '!');
-					response.status(200).json({ message: "Login succesful"})
-				}
-			} else {
-				connection.query('insert into accounts (username,password,rollno) values(?,?,?)',[username,password,rollno],function(error,results){});		
-				console.log(username+"signed in successfully");
-				response.status(200).json({ message: "Singup succesful"})
-			}			
-			response.end();
+		connection.query('SELECT * FROM accounts WHERE rollno = ?', [rollno], function(error, results, fields) {
+            if(!error) {
+                if (results.length > 0) {
+                    response.status(400).json({message:"User already exists"})
+                } else {
+                    connection.query('insert into accounts (username,password,rollno) values(?,?,?)',[username,password,rollno],function(error1,results1){
+						if(!error1) {
+							response.status(200).json({ message: "Singup succesful", userid: results1.insertId})
+						} else {
+							response.status(400).json({message:"Unable to insert data"})
+						}
+					});		
+                }
+            } else {
+                response.status(400).json({ message: "Incorrect Username and/or Password!"})
+            }
 		});
 	} else {
-		response.send('Please enter Username, Password and Rollno!');
+		response.status(400).json({ message: "Enter Username and/or Password!"})
 		response.end();
 	}
 });

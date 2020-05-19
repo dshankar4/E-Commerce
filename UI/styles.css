@@ -111,9 +111,9 @@ body .js-tilt-glare{
  .filter_text{
       margin:10% 10% 1% 10%;
   }
-  .main-nav{
-    float:right;
-    margin-top:10px;
+    .main-nav{
+	float:right;
+	margin-top:10px;
 	margin-right: 10px;
 }
 .main-nav li{
