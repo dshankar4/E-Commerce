@@ -15,10 +15,10 @@ var path = require('path');
 const multer=require('multer');
 const stripe=require('stripe')(stripeSecretKey);
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : mysql_username,
-	password : mysql_password,
-	database : database
+	host     : 'remotemysql.com',
+	user     : 'kxNgZo8wRe',
+	password : 'KPSrJDkTqW',
+	database : 'kxNgZo8wRe'
 });
 var app = express();
 app.use(session({
@@ -99,7 +99,7 @@ app.get("/filter_products",function(req,res){
 })
 
 const getProductsByType = (type,callback) => {
-	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=?',[type],(error,results) => {
+	connection.query('SELECT * FROM products WHERE CATEGORY=?',[type],(error,results) => {
 		if(error) {
 			callback(error,null);
 		} else {
