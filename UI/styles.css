@@ -349,18 +349,23 @@ thead{
     color:#F6376D;
     text-align: center;
 }
+.heading{
+    color:#F6376D;    
+}
 .about_page{
     color:white;
     padding: 10px 40px 4px 40px;
+    line-height: 40px;
+    word-spacing: 8px;
+    letter-spacing: 1px;;
 }
 .about_container{
     background-color:#263145;
 	width: 880px;
 	height: 600px;
-	margin: -40px 20px 40px 200px;
+	margin: -40px 20px 40px 300px;
 	border-radius: 1.5em;
 }
 .prev{
     margin:1%;
 }
-

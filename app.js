@@ -84,7 +84,7 @@ app.post('/auth_signup', function(request, response) {
 });
 app.get("/filter_products",function(req,res){
 	const {min,max,offer1,offer2,category}=req.query;
-	connection.query('SELECT * FROM PRODUCTS WHERE CATEGORY=? and price >= ? and price <= ? and offer >= ? and offer <= ?',[category,min,max,offer1,offer2],(error,results) => {
+	connection.query('SELECT * FROM products WHERE CATEGORY=? and price >= ? and price <= ? and offer >= ? and offer <= ?',[category,min,max,offer1,offer2],(error,results) => {
 		if(error) {
 			console.log(error)
 		} else {
@@ -225,7 +225,7 @@ const storage = multer.diskStorage({
 	  }
 	  else{
 		  const { file } = req
-		  connection.query('INSERT INTO PRODUCTS (name,category,price,offer,imgpath,description) VALUES (?, ?, ?, ?, ?, ?)',[name,category,price,offer,"./images/"+req.file.filename,description], function(error, results){
+		  connection.query('INSERT INTO products (name,category,price,offer,imgpath,description) VALUES (?, ?, ?, ?, ?, ?)',[name,category,price,offer,"./images/"+req.file.filename,description], function(error, results){
 			  if(error){
 				  console.log("db not updated",error)
 
