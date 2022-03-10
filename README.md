@@ -1,5 +1,8 @@
 # Tech-Circle
-E-Commerce site developed using **node js** and the payment is handled by **Stripe** payment gateway
+E-Commerce site developed using **Node js** which allows users to purchase and sell products within their neighbourhood. The payment is done through the **Stripe
+payment gateway**.
+
+This
 - git clone https://github.com/dshankar4/E-Commerce.git
 - move to the cloned directory and do the following
 1. **npm install**
